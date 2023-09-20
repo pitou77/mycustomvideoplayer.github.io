@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change Iframe SRC on Scroll</title>
+    <title>Change iframe src on scroll</title>
 </head>
 <body>
-    <iframe id="myIframe" width="100%" height="100%" src="https://www.example.com" frameborder="0" allowfullscreen></iframe>
+    <iframe id="myIframe" src="https://www.example.com" width="100%" height="400"></iframe>
 
     <script>
-        const iframe = document.getElementById('myIframe');
-        const iframeSources = [
+        let iframe = document.getElementById("myIframe");
+        let urls = [
             'https://doods.pro/e/dgmmi1q20wvs',
             'https://doods.pro/e/uo20f9qzxv8q',
             'https://doods.pro/e/ycapmc8l7p5d',
@@ -22,26 +22,14 @@
             'https://doods.pro/e/7ae5ms31iymp',
             'https://doods.pro/e/bdar8xvpro5x'
         ];
+        let currentIndex = 0;
 
-        let currentSourceIndex = 0;
-
-        function changeIframeSource(direction) {
-            if (direction === 'up' && currentSourceIndex > 0) {
-                currentSourceIndex--;
-            } else if (direction === 'down' && currentSourceIndex < iframeSources.length - 1) {
-                currentSourceIndex++;
-            }
-
-            iframe.src = iframeSources[currentSourceIndex];
-        }
-
-        window.addEventListener('wheel', (event) => {
-            if (event.deltaY > 0) {
-                // Scrolling down
-                changeIframeSource('down');
-            } else if (event.deltaY < 0) {
-                // Scrolling up
-                changeIframeSource('up');
+        window.addEventListener("scroll", function() {
+            // Check if the user has scrolled to the top of the page
+            if (window.scrollY === 0) {
+                // Change the src attribute of the iframe to the next URL
+                iframe.src = urls[currentIndex];
+                currentIndex = (currentIndex + 1) % urls.length; // Cycle through the URLs
             }
         });
     </script>
