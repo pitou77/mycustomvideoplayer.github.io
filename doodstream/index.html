@@ -16,16 +16,13 @@ fetch(apiUrl).then((t => {
     if (!t.ok) throw new Error(`HTTP error! Status: ${t.status}`);
     return t.json()
 })).then((t => {
-		var posts = "", isi = t.result.files;
-    	for (var i = 0; i < isi.length; i++) {
-		var title = isi[i].file_code;
-        posts += `${title}<br />`
-        }
-    resultContainer.innerHTML = `
-    
-    ${posts}
-    
-    `
+	var isi = t.result.files;
+        const videoLink = document.createElement("a");
+        videoLink.href = 'https://dood.pro/e/'+isi[0].file_code;
+        videoLink.textContent = isi[0].title;			
+    resultContainer.appendChild(videoLink);
+	
+
     
 })).catch((t => {
     console.error("Fetch error:", t)
