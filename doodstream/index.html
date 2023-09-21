@@ -20,7 +20,7 @@ fetch(apiUrl).then((t => {
 	var isi = t.result.files;
 		for (var i = 0; i < isi.length; i++) {
 	
-			
+	const videoId = isi[i].file_code;		
         const videoLink = document.createElement("a");
         videoLink.href = 'https://doods.pro/e/'+isi[i].file_code;
         videoLink.textContent = isi[i].title;		
@@ -28,22 +28,25 @@ fetch(apiUrl).then((t => {
         thumbnailImg.src = isi[i].single_img;
         thumbnailImg.alt = isi[i].title;
         videoLink.addEventListener("click", () => {
-            loadVideo(isi[i].file_code);
+            loadVideo(videoId);
         });
         thumbnailImg.addEventListener("click", () => {
-            loadVideo(isi[i].file_code);
+            loadVideo(videoId);
         });		
 	resultContainer.appendChild(thumbnailImg);
 	resultContainer.appendChild(document.createElement("br"));
 	resultContainer.appendChild(videoLink);			
 	resultContainer.appendChild(document.createElement("br"));
 	resultContainer.appendChild(document.createElement("br"));
-		}
+			
 function loadVideo(videoId) {
     const videoFrame = document.getElementById("videoFrame");
     videoFrame.src = `https://doods.pro/e/${videoId}`;
     videoFrame.height = `360`;
 }
+			
+		}
+
     
 })).catch((t => {
     console.error("Fetch error:", t)
