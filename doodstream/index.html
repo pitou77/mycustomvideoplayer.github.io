@@ -19,9 +19,10 @@ fetch(apiUrl).then((t => {
 	var isi = t.result.files;
 		for (var i = 0; i < isi.length; i++) {
         const videoLink = document.createElement("a");
-        videoLink.href = 'https://dood.pro/e/'+isi[i].file_code;
+        videoLink.href = 'https://doods.pro/e/'+isi[i].file_code;
         videoLink.textContent = isi[i].title;			
-    resultContainer.appendChild(videoLink);
+	resultContainer.appendChild(videoLink);			
+	resultContainer.appendChild(document.createElement("br"));
 		}
 
     
