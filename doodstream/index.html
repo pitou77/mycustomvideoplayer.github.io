@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>doodstreams</title>
     <script type="text/javascript" src="https://useqr.link/js/base64.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <style>
 body {
@@ -31,14 +32,14 @@ img {
 
     <script>
 if (window.location.href.includes("?data")==true) {
-	document.getElementById("datainput").style.display = "block";
-	document.getElementById("databtn").style.display = "block";
-	console.log("data rendered");
-	console.log(parsedData.result.files[0].file_code); 
-    function getDatainTextArea(){
+	document.getElementById("datainput").style.display = "block";document.getElementById("databtn").style.display = "block";
+     $(document).ready(function() {
+	$("#databtn").click(function() {     
 	var jsonData = document.getElementById("datainput").value;	    
 	var parsedData = JSON.parse(Base64.decode(jsonData));
-    }
+	console.log(parsedData.result.files[0].file_code); 
+	});	
+    });
 
 }else{
 	
