@@ -33,6 +33,7 @@ img {
     <script>
 if (window.location.href.includes("?data")==true) {
 	document.getElementById("datainput").style.display = "block";document.getElementById("databtn").style.display = "block";
+	const resultContainer = document.getElementById("result-container");
      $(document).ready(function() {
 	$("#databtn").click(function() {     
 	var jsonData = document.getElementById("datainput").value;	    
