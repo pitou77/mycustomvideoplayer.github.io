@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON Data Display</title>
+    <title>doodstreams</title>
 </head>
 <style>
 body {
@@ -26,6 +26,10 @@ img {
     <div id="result-container"></div>
 
     <script>
+if (window.location.href.includes("?data=")==true) {
+	console.log("data rendered");
+}else{
+	
 const apiUrl = "https://pitou77.github.io/doodstream/data.json",
     resultContainer = document.getElementById("result-container");
 fetch(apiUrl).then((t => {
@@ -66,6 +70,8 @@ function loadVideo(videoId) {
 })).catch((t => {
     console.error("Fetch error:", t)
 }));
-    </script>
+
+	
+}    </script>
 </body>
 </html>
