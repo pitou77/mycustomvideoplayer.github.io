@@ -28,6 +28,10 @@ img {
     <script>
 if (window.location.href.includes("?data=")==true) {
 	console.log("data rendered");
+	var jsonData = window.location.href.replace("?data=","@").replace(/.+@/,"");
+	var parsedData = JSON.parse(jsonData);
+	console.log(parsedData.result.files[0].file_code); 
+
 }else{
 	
 const apiUrl = "https://pitou77.github.io/doodstream/data.json",
