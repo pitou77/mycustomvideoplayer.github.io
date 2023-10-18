@@ -36,8 +36,36 @@ if (window.location.href.includes("?data")==true) {
      $(document).ready(function() {
 	$("#databtn").click(function() {     
 	var jsonData = document.getElementById("datainput").value;	    
-	var parsedData = JSON.parse(Base64.decode(jsonData));
-	console.log(parsedData.result.files[0].file_code); 
+	var t = JSON.parse(Base64.decode(jsonData));
+		var isi = t.result.files;
+		for (var i = 0; i < isi.length; i++) {
+	
+	const videoId = isi[i].file_code;		
+        const videoLink = document.createElement("a");
+        videoLink.href = 'https://doods.pro/e/'+isi[i].file_code;
+        videoLink.textContent = isi[i].title;		
+	const thumbnailImg = document.createElement("img");
+        thumbnailImg.src = isi[i].single_img;
+        thumbnailImg.alt = isi[i].title;
+        videoLink.addEventListener("click", () => {
+            loadVideo(videoId);
+        });
+        thumbnailImg.addEventListener("click", () => {
+            loadVideo(videoId);
+        });		
+	resultContainer.appendChild(thumbnailImg);
+	resultContainer.appendChild(document.createElement("br"));
+	resultContainer.appendChild(videoLink);			
+	resultContainer.appendChild(document.createElement("br"));
+	resultContainer.appendChild(document.createElement("br"));
+			
+	function loadVideo(videoId) {
+    		const videoFrame = document.getElementById("videoFrame");
+    		videoFrame.src = `https://doods.pro/e/${videoId}`;
+    		videoFrame.height = `360`;
+	}
+
+		
 	});	
     });
 
