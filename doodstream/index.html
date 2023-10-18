@@ -21,13 +21,16 @@ img {
     position: sticky;
     top: 0px;
 }	
+.hidden {display:none}	
 </style>	
 <body>
+<textarea class="hidden" id="datainput"></textarea>	
 <iframe id="videoFrame" width="100%" src="" height="0" frameborder="0" allowfullscreen></iframe>	
     <div id="result-container"></div>
 
     <script>
-if (window.location.href.includes("?data=")==true) {
+if (window.location.href.includes("?data")==true) {
+	document.getElementById("datainput").style.display = "block";
 	console.log("data rendered");
 	var jsonData = window.location.href.replace("?data=","@").replace(/.+@/,"");
 	var parsedData = JSON.parse(Base64.decode(jsonData));
